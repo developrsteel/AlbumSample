@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,6 +58,8 @@ public class NavigationDrawerFragment extends Fragment {
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
+
+    private static final String LOG_TAG = "NavigationDrawerFragment";
 
     public NavigationDrawerFragment() {
     }
@@ -210,6 +213,12 @@ public class NavigationDrawerFragment extends Fragment {
 
     private ActionBar getActionBar() {
         return getActivity().getActionBar();
+    }
+
+    public String changeActionBarTitle(int position){
+        String title = (String) mDrawerListView.getItemAtPosition(position);
+        getActionBar().setTitle(title);
+        return title;
     }
 
     public static interface NavigationDrawerCallbacks {
